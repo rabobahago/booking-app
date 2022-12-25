@@ -31,9 +31,14 @@ func main(){
 		fmt.Scan(&email)
 		fmt.Printf("Please Enter number of tickets: ")
 		fmt.Scan(&userTickets)
-		remainingTickets = remainingTickets - userTickets
+		var isValidName bool = len(firstName) >= 2  && len(lastName) >= 2
+		isValidEmail := strings.Contains(email, "@")
+		isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
+		if isValidEmail && isValidTicketNumber && isValidName {
+			remainingTickets = remainingTickets - userTickets
 		//adding element to array
 		//bookings[0] = firstName + " " + lastName
+
 		bookings = append(bookings, firstName + " " + lastName)
 		// fmt.Printf("The whole slice %v\n", bookings)
 		// fmt.Printf("The first value of slice %v\n", bookings[0])
@@ -49,6 +54,17 @@ func main(){
            firstNames = append(firstNames, firstName)
 		}
 		fmt.Printf("The first names of bookings are: %v\n", firstNames)
+		var noTicketRemaining bool = remainingTickets == 0
+		if noTicketRemaining {
+			fmt.Printf("Our conference is booked out. Please come back next year")
+			break
+		}
+		}else{
+			fmt.Printf("your input data is invalid, please try again\n")
+
+		}
+
+
 	}
 
 }
